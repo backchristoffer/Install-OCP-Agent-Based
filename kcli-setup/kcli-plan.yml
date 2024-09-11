@@ -1,0 +1,61 @@
+parameters:
+  vm_iso: agent.x86_64.iso
+  vm_cpu: 8
+  vm_memory: 33000
+  vm_disk_pool: labpool1
+  vm_disk_size: 120
+  vm_network: labnet-ocp1
+
+lab-master0:
+ iso: "{{ vm_iso }}"
+ numcpus: "{{ vm_cpu }}"
+ memory: "{{ vm_memory }}"
+ pool: "{{ vm_disk_pool }}"
+ disks:
+ - size: "{{ vm_disk_size }}"
+ reservedns: true
+ reservehost: true
+ reserveip: true
+ nets:
+ - name: "{{ vm_network }}"
+   nic: en3
+   ip: 192.168.40.10
+   netmask: 255.255.255.0
+   gateway: 192.168.40.1
+   mac: "00:00:00:00:00:A0"
+
+lab-master1:
+ iso: "{{ vm_iso }}"
+ numcpus: "{{ vm_cpu }}"
+ memory: "{{ vm_memory }}"
+ pool: "{{ vm_disk_pool }}"
+ disks:
+ - size: "{{ vm_disk_size }}"
+ reservedns: true
+ reservehost: true
+ reserveip: true
+ nets:
+ - name: "{{ vm_network }}"
+   nic: en3
+   ip: 192.168.40.11
+   netmask: 255.255.255.0
+   gateway: 192.168.40.1
+   mac: "00:00:00:00:00:A1"
+
+lab-master2:
+ iso: "{{ vm_iso }}"
+ numcpus: "{{ vm_cpu }}"
+ memory: "{{ vm_memory }}"
+ pool: "{{ vm_disk_pool }}"
+ disks:
+ - size: "{{ vm_disk_size }}"
+ reservedns: true
+ reservehost: true
+ reserveip: true
+ nets:
+ - name: "{{ vm_network }}" 
+   nic: en3
+   ip: 192.168.40.12
+   netmask: 255.255.255.0
+   gateway: 192.168.40.1
+   mac: "00:00:00:00:00:A2"
