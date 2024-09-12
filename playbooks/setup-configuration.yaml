@@ -1,7 +1,0 @@
-- name: Setup OCP4 Agent installation
-  hosts: local
-  become: yes
-  vars_files:
-    - vars.yml
-  roles:
-    - create_agent_iso

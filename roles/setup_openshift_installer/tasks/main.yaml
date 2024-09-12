@@ -1,0 +1,13 @@
+- name: Download openshift-installer binary
+  ansible.builtin.unarchive:
+    src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-install-linux.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes  
+
+- name: Fetch openshift-install version
+  ansible.builtin.command: openshift-install version
+  register: install_version
+
+- name: Print openshift-install version
+  ansible.builtin.debug:
+    msg: "{{ install_version }}"

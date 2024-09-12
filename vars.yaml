@@ -3,6 +3,7 @@ cluster_name: "rhlab"
 base_domain: "lab"
 
 # Network Setup
+rendezvousIP: "192.168.40.9"
 api_vip: "192.168.40.10"
 ingress_vip: "192.168.40.11"
 cluster_network_cidr: "10.128.0.0/14"

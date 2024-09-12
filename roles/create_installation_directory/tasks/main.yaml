@@ -1,0 +1,9 @@
+- name: Create installation, configuration and ssh directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ install_dir }}"
+    - "{{ install_dir }}/ssh"
+    - "{{ install_dir }}/configs"

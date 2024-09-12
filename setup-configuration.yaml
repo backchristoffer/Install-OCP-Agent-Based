@@ -1,0 +1,16 @@
+- name: Setup OCP4 Agent installation
+  hosts: localhost
+  become: yes
+  vars_files:
+    - vars.yaml
+  vars_prompt: 
+    - name: offline_access_token
+      prompt: Please provide your offline access token
+      private: true
+      unsafe: true
+  roles:
+    - setup_openshift_installer
+    - create_installation_directory
+    - create_ssh_key
+    - create_pull_secret
+    - create_config_files
