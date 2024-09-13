@@ -6,4 +6,3 @@
   loop:
     - "{{ install_dir }}"
     - "{{ install_dir }}/ssh"
-    - "{{ install_dir }}/configs"

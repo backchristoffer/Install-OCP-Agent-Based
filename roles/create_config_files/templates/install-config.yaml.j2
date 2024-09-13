@@ -2,10 +2,10 @@ apiVersion: v1
 baseDomain: "{{ base_domain }}"
 compute:
   - name: worker
-    replicas: "{{ worker_nodes }}"
+    replicas: {{ worker_nodes }}
 controlPlane:
   name: master
-  replicas: "{{ controlplane_nodes }}"
+  replicas: {{ controlplane_nodes }}
 metadata:
   name: "{{ cluster_name }}"
 networking:
@@ -24,5 +24,5 @@ platform:
     ingressVIPs:
       - "{{ ingress_vip }}"
 fips: false
-pullSecret: "{{ pull_secret_response }}"
+pullSecret: "{{ pull_secret_content | regex_replace('[\\r\\n\\t]+','') }}"
 sshKey: "{{ ssh_public_key }}"

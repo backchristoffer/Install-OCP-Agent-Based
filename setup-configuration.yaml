@@ -14,3 +14,4 @@
     - create_ssh_key
     - create_pull_secret
     - create_config_files
+    - create_agent_based_iso

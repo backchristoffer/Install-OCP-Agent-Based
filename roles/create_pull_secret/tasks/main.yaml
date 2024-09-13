@@ -24,6 +24,10 @@
     return_content: true
   register: pull_secret_response
 
-- name: Display the Pull Secret
-  debug:
-    var: pull_secret_response.json
+- name: Store pull secret content
+  set_fact:
+    pull_secret_content: "{{ pull_secret_response.content }}"
+
+- name: Output pull secret for debugging
+  ansible.builtin.debug:
+    msg: "{{ pull_secret_content | to_nice_json }}"

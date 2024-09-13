@@ -21,7 +21,7 @@
 
 - name: Store the SSH key content in a variable for later use
   set_fact:
-    ssh_public_key: "{{ sshkey_content.content | b64decode }}"
+    ssh_public_key: "{{ sshkey_content.content | b64decode | trim }}"
   when: sshpub.stat.exists
 
 - name: Output SSH public key for debugging

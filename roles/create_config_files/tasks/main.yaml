@@ -1,9 +1,9 @@
 - name: Create install-config.yaml
   ansible.builtin.template:
     src: install-config.yaml.j2
-    dest: "{{ install_dir }}/configs/install-config.yaml"
+    dest: "{{ install_dir }}/install-config.yaml"
 
 - name: Create agent-config.yaml
   ansible.builtin.template:
     src: agent-config.yaml.j2
-    dest: "{{ install_dir }}/configs/agent-config.yaml"
+    dest: "{{ install_dir }}/agent-config.yaml"
