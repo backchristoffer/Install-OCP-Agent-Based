@@ -1,3 +1,4 @@
+# SLuta ladda ned varje gång plxz!!!1
 - name: Download openshift-installer binary
   ansible.builtin.unarchive:
     src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-install-linux.tar.gz

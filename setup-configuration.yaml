@@ -9,8 +9,8 @@
       private: true
       unsafe: true
   roles:
-    - setup_openshift_installer
-    - create_installation_directory
+    #- setup_openshift_installer
+    #- create_installation_directory
     - create_ssh_key
     - create_pull_secret
     - create_config_files
