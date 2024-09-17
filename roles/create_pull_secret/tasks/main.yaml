@@ -1,0 +1,37 @@
+- name: Request Bearer Token
+  ansible.builtin.uri:
+    url: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    method: POST
+    body_format: form-urlencoded
+    body:
+      grant_type: refresh_token
+      client_id: cloud-services
+      refresh_token: "{{ offline_access_token }}"
+    return_content: true
+  register: bearer_token_response
+
+- name: Extract Bearer Token
+  set_fact:
+    bearer_token: "{{ bearer_token_response.json.access_token }}"
+
+- name: Request Pull Secret
+  ansible.builtin.uri:
+    url: https://api.openshift.com/api/accounts_mgmt/v1/access_token
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ bearer_token }}"
+    return_content: true
+  register: pull_secret_response
+
+- name: Output pull secret for debugging 1
+  ansible.builtin.debug:
+    msg: "{{ pull_secret_response.json }}"
+
+- name: Store pull secret content
+  set_fact:
+    pull_secret_content: "{{ pull_secret_response.json | to_nice_json }}"
+
+- name: Output pull secret for debugging 2
+  ansible.builtin.debug:
+    msg: "{{ pull_secret_content | to_nice_json }}"

@@ -1,0 +1,2 @@
+- name: Create cluster-manifests for the agent based ISO
+  ansible.builtin.command: openshift-install agent create image --dir "{{ install_dir }}"

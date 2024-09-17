@@ -1,0 +1,30 @@
+- name: Check if installation directory exists
+  ansible.builtin.stat:
+    path: "{{ install_dir }}"
+  register: idr
+
+- name: Ensure SSH directory exists
+  ansible.builtin.file:
+    path: "{{ install_dir }}/ssh"
+    state: directory
+    mode: '0755'
+
+- name: Generate SSH key 
+  openssh_keypair:
+    path: "{{ install_dir }}/ssh/ocplab_rsa"
+  when: idr.stat.isdir is defined and idr.stat.isdir 
+
+- name: Check if SSH key is generated as "{{ install_dir }}/ssh/ocplab_rsa.pub"
+  ansible.builtin.stat:
+    path: "{{ install_dir }}/ssh/ocplab_rsa.pub"
+  register: sshpub
+
+- name: Store the SSH key content in a variable for later use
+  ansible.builtin.set_fact:
+    ssh_public_key: "{{ lookup('file', install_dir + '/ssh/ocplab_rsa.pub') }}"
+  when: sshpub.stat.exists
+
+- name: Output SSH public key for debugging
+  ansible.builtin.debug:
+    msg: "{{ ssh_public_key }}"
+  when: sshpub.stat.exists
