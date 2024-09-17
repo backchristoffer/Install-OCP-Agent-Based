@@ -19,12 +19,6 @@
     path: "{{ install_dir }}/ssh/ocplab_rsa.pub"
   register: sshpub
 
-# - name: Read the SSH public key file
-#   ansible.builtin.slurp:
-#     src: "{{ install_dir }}/ssh/ocplab_rsa.pub"
-#   when: sshpub.stat.exists
-#   register: sshkey_content
-
 - name: Store the SSH key content in a variable for later use
   ansible.builtin.set_fact:
     ssh_public_key: "{{ lookup('file', install_dir + '/ssh/ocplab_rsa.pub') }}"
