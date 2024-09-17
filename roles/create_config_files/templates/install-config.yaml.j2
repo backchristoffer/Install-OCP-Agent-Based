@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 baseDomain: "{{ base_domain }}"
 compute:
@@ -24,5 +25,5 @@ platform:
     ingressVIPs:
       - "{{ ingress_vip }}"
 fips: false
-pullSecret: "{{ pull_secret_content | replace('\n', '') }}"
+pullSecret: '{{ pull_secret_content }}'
 sshKey: "{{ ssh_public_key }}"

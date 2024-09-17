@@ -1,3 +1,4 @@
+# Following Red Hat Documentation: https://docs.openshift.com/container-platform/4.16/installing/installing_with_agent_based_installer/installing-with-agent-based-installer.html#installing-with-agent-based-installer
 - name: Setup OCP4 Agent installation
   hosts: localhost
   become: yes
@@ -9,9 +10,10 @@
       private: true
       unsafe: true
   roles:
-    #- setup_openshift_installer
-    #- create_installation_directory
+    - setup_openshift_installer
+    - create_installation_directory
     - create_ssh_key
     - create_pull_secret
     - create_config_files
+    - create_cluster_manifests
     - create_agent_based_iso

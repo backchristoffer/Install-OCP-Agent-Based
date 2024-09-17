@@ -1,9 +1,15 @@
 # SLuta ladda ned varje gång plxz!!!1
-- name: Download openshift-installer binary
+- name: Check for openshift-installer
+  ansible.builtin.stat:
+    path: "/usr/local/bin/openshift-install"
+  register: file
+
+- name: Download openshift-installer binary 
   ansible.builtin.unarchive:
     src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-install-linux.tar.gz
     dest: /usr/local/bin
     remote_src: yes  
+  when: not file.stat.exists
 
 - name: Fetch openshift-install version
   ansible.builtin.command: openshift-install version
