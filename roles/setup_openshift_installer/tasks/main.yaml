@@ -12,8 +12,9 @@
   when: not file.stat.exists
 
 - name: Fetch openshift-install version
-  ansible.builtin.command: openshift-install version
+  ansible.builtin.command: /usr/local/bin/openshift-install version
   register: install_version
+  when: file.stat.exists
 
 - name: Print openshift-install version
   ansible.builtin.debug:
